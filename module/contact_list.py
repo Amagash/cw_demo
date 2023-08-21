@@ -20,4 +20,8 @@ class ContactList:
         """
 
     def get_contacts(self):
-
+        """
+        Returns the list of contacts. 
+        :return: The list of contacts. 
+        """
+        return self.contacts
