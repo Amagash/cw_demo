@@ -1,3 +1,4 @@
+import re
 class ShoppingList:
     """
     A class to represent a list of items to buy. 
@@ -8,19 +9,21 @@ class ShoppingList:
         """
         self.items = []
 
-    def add_item(self, name, quantity, price):
+    def add_item(self, name, quantity, price, reference):
         """
         Adds an item to the list. 
         :param str name: The name of the item. 
         :param int quantity: The quantity of the item. 
         :param float price: The price of the item. 
+        :param str reference: The reference of the item. A reference is an 8 characteres string with only numbers and capital letters.
         :return: None. 
         """
         self.items.append(
             {
                 "name": name,
                 "quantity": quantity,
-                "price": price
+                "price": price,
+                "reference": reference
             }
         )
     
@@ -43,3 +46,15 @@ class ShoppingList:
         """
         for item in list_of_items:
             self.add_item(item["name"], item["quantity"], item["price"])
+
+    def is_valid_reference (self, reference):
+        """
+        Checks if a reference is valid. 
+        :param str reference: The reference to check. 
+        :return: True if the reference is valid, False otherwise. 
+        """
+        if re.match("^[A-Z0-9]{8}$", reference):
+            return True
+        return False
+
+
