@@ -8,12 +8,13 @@ class ShoppingListTest(unittest.TestCase):
 
     def test_add_item(self):
         shopping_list = ShoppingList()
-        shopping_list.add_item("Banana", 1, 1.5)
+        shopping_list.add_item("Banana", 1, 1.5, "AAAAAAAA")
         self.assertEqual(shopping_list.items, [
             {
                 "name": "Banana",
                 "quantity": 1,
-                "price": 1.5
+                "price": 1.5,
+                "reference": "AAAAAAAA"
             }])
 
     def test_remove_item(self):
@@ -60,8 +61,8 @@ class ShoppingListTest(unittest.TestCase):
             ]
 
         for reference in valid_references:
-            self.assertTrue(ShoppingList.is_valid_reference(reference))
+            self.assertTrue(ShoppingList.is_valid_reference(self, reference))
 
         for reference in invalid_references:
-            self.assertFalse(ShoppingList.is_valid_reference(reference))
+            self.assertFalse(ShoppingList.is_valid_reference(self, reference))
 
