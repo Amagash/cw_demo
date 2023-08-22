@@ -45,7 +45,7 @@ class ShoppingList:
         :return: None. 
         """
         for item in list_of_items:
-            self.add_item(item["name"], item["quantity"], item["price"])
+            self.add_item(item["name"], item["quantity"], item["price"], item["reference"])
 
     def is_valid_reference (self, reference):
         """
