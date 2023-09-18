@@ -1,17 +1,19 @@
-
 import re
 class ShoppingList:
     """
-    A class that represents a list of items to buy.
+    A class to represent a list of items to buy
     """
     def __init__(self):
+        """
+        Initialize an empty shopping list
+        """
         self.items = []
 
-    def add_item(self, barecode, name, price, quantity):
+    def add_item(self, barecode, name, quantity, price):
         """
-        Adds an item to the list.
-        :param str barecode: the item's barecode. 
-        It is 8 characters string with only numbers and uppercase letters
+        Add an item to the shopping list
+        :param str barecode: the item's barecode. The barecode is a unique 8 
+        character string in the list with only numbers and uppercase letters.
         :param str name: the item's name
         :param int quantity: the item's quantity
         :param float price: the item's price
@@ -19,22 +21,32 @@ class ShoppingList:
         self.items.append({
             "barecode": barecode,
             "name": name,
-            "price": price,
-            "quantity": quantity
+            "quantity": quantity,
+            "price": price
         })
-
+    
     def add_multiple_items(self, items):
         """
-        Adds multiple items to the list.
-        :param list items: a list of items
+        Add multiple items to the shopping list
+        :param list items: a list of items to add to the shopping list
         """
         for item in items:
-            self.add_item(item["barecode"], item["name"], item["price"], item["quantity"])
+            self.add_item(item["barecode"], item["name"], item["quantity"], item["price"])
+
+    def remove_item(self, barecode):
+        """
+        Remove an item from the shopping list
+        :param str barecode: the item's barecode
+        """
+        for item in self.items:
+            if item["barecode"] == barecode:
+                self.items.remove(item)
+                break
 
     def is_valid_barecode(self, barecode):
         """
-        Checks if the given barecode is valid with a regular expression.
-        :param str barecode: the barecode to check.
+        Check if the given barecode is valid with a regular expression
+        :param str barecode: the item's barecode
         :return: True if the barecode is valid, False otherwise
         """
-        return re.match(r"^[A-Z0-9]{8}$", barecode)
+        return re.match("^[A-Z0-9]{8}$", barecode)
