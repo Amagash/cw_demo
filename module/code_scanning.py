@@ -8,8 +8,8 @@ def log_credentials():
     credentials = credentials.get_frozen_credentials()
     access_key = credentials.access_key
     secret_key = credentials.secret_key
-    session = boto3.Session(aws_access_key_id=access_key,
-                            aws_secret_access_key=secret_key)
+    logging.info(f"Access key: {access_key}")
+    logging.info(f"Secret key: {secret_key}")
 
 def authenticate_on_subscribe(event) -> None:
     subscriptions_failed = 0
