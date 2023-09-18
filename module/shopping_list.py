@@ -1,60 +1,40 @@
+
 import re
 class ShoppingList:
     """
-    A class to represent a list of items to buy. 
+    A class that represents a list of items to buy.
     """
     def __init__(self):
-        """
-        Constructs an empty list for the ShoppingList object.
-        """
         self.items = []
 
-    def add_item(self, name, quantity, price, reference):
+    def add_item(self, barecode, name, price, quantity):
         """
-        Adds an item to the list. 
-        :param str name: The name of the item. 
-        :param int quantity: The quantity of the item. 
-        :param float price: The price of the item. 
-        :param str reference: The reference of the item. A reference is an 8 characteres string with only numbers and capital letters.
-        :return: None. 
+        Adds an item to the list.
+        :param str barecode: the item's barecode. 
+        It is 8 characters string with only numbers and uppercase letters
+        :param str name: the item's name
+        :param int quantity: the item's quantity
+        :param float price: the item's price
         """
-        self.items.append(
-            {
-                "name": name,
-                "quantity": quantity,
-                "price": price,
-                "reference": reference
-            }
-        )
-    
-    def remove_item(self, name):
-        """
-        Removes an item from the list. 
-        :param str name: The name of the item. 
-        :return: None. 
-        """
-        for item in self.items:
-            if item["name"] == name:
-                self.items.remove(item)
-                break
+        self.items.append({
+            "barecode": barecode,
+            "name": name,
+            "price": price,
+            "quantity": quantity
+        })
 
-    def add_multiple_items(self, list_of_items):
+    def add_multiple_items(self, items):
         """
-        Adds multiple items to the list. 
-        :param list list_of_items: A list of items. 
-        :return: None. 
+        Adds multiple items to the list.
+        :param list items: a list of items
         """
-        for item in list_of_items:
-            self.add_item(item["name"], item["quantity"], item["price"], item["reference"])
+        for item in items:
+            self.add_item(item["barecode"], item["name"], item["price"], item["quantity"])
 
-    def is_valid_reference (self, reference):
+    def is_valid_barecode(self, barecode):
         """
-        Checks if a reference is valid. 
-        :param str reference: The reference to check. 
-        :return: True if the reference is valid, False otherwise. 
+        Checks if the given barecode is valid with a regular expression.
+        :param str barecode: the barecode to check.
+        :return: True if the barecode is valid, False otherwise
         """
-        if re.match("^[A-Z0-9]{8}$", reference):
-            return True
-        return False
-
-
+        return re.match(r"^[A-Z0-9]{8}$", barecode)
