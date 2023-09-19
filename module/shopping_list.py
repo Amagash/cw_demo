@@ -1,52 +1,52 @@
 import re
 class ShoppingList:
     """
-    A class to represent a list of items to buy
+    Class to represent a list of items to buy
     """
     def __init__(self):
         """
-        Initialize an empty shopping list
+        Constructs an empty shopping list.
         """
         self.items = []
-
-    def add_item(self, barecode, name, quantity, price):
+    
+    def add_item(self, barcode, name, price, quantity):
         """
-        Add an item to the shopping list
-        :param str barecode: the item's barecode. The barecode is a unique 8 
-        character string in the list with only numbers and uppercase letters.
-        :param str name: the item's name
-        :param int quantity: the item's quantity
-        :param float price: the item's price
+        Adds an item to the shopping list.
+        :param str barcode: The barcode of the item. The barcode is a unique 
+        8 character string with only numbers and uppercase letters.
+        :param str name: The name of the item
+        :param float price: The price of the item
+        :param int quantity: The quantity of the item
         """
         self.items.append({
-            "barecode": barecode,
+            "barcode": barcode,
             "name": name,
-            "quantity": quantity,
-            "price": price
+            "price": price,
+            "quantity": quantity
         })
-    
+
     def add_multiple_items(self, items):
         """
-        Add multiple items to the shopping list
-        :param list items: a list of items to add to the shopping list
+        Adds multiple items to the shopping list.
+        :param list items: A list of items to add to the shopping list.
         """
         for item in items:
-            self.add_item(item["barecode"], item["name"], item["quantity"], item["price"])
+            self.add_item(item["barcode"], item["name"], item["price"], item["quantity"])
 
-    def remove_item(self, barecode):
+    def remove_item(self, barcode):
         """
-        Remove an item from the shopping list
-        :param str barecode: the item's barecode
+        Removes an item from the shopping list.
+        :param str barcode: The barcode of the item to remove.
         """
         for item in self.items:
-            if item["barecode"] == barecode:
+            if item["barcode"] == barcode:
                 self.items.remove(item)
                 break
 
-    def is_valid_barecode(self, barecode):
+    def is_valid_barcode(self, barcode):
         """
-        Check if the given barecode is valid with a regular expression
-        :param str barecode: the item's barecode
-        :return: True if the barecode is valid, False otherwise
+        Checks if a barcode is valid with a regular expression.
+        :param str barcode: The barcode to check.
+        :return: True if the barcode is valid, False otherwise.
         """
-        return re.match("^[A-Z0-9]{8}$", barecode)
+        return bool(re.match("^[A-Z0-9]{8}$", barcode))
