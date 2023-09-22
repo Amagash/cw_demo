@@ -1,27 +1,31 @@
+import re
 class ShoppingList:
     """
-    A class to represent a list of items to buy
+    A class to represent a shopping list.
     """
     def __init__(self):
+        """
+        Initialize a shopping list.
+        """
         self.items = []
-    
+
     def add_item(self, barcode, name, price, quantity):
         """
         Add an item to the shopping list.
-        :param str barcode: The barcode of the item. The barcode is a 
-        unique 8 character string with only numbers and uppercase letters.
-        :param str name: The name of the item
-        :param float price: The price of the item
-        :param int quantity: The quantity of the item
+        :param str barcode: The barcode of the item. 
+        The barcode is a unique 8 character string in the 
+        list with only numbers and uppercase letters.
+        :param str name: The name of the item.
+        :param float price: The price of the item.
+        :param int quantity: The quantity of the item.
         :return: None
-        
         """
         self.items.append({
             "barcode": barcode,
             "name": name,
             "price": price,
             "quantity": quantity
-        })
+            })
 
     def add_multiple_items(self, items):
         """
@@ -41,7 +45,7 @@ class ShoppingList:
         for item in self.items:
             if item["barcode"] == barcode:
                 self.items.remove(item)
-                break
+                return
 
     def is_valid_barcode(self, barcode):
         """
@@ -49,4 +53,5 @@ class ShoppingList:
         :param str barcode: The barcode to check.
         :return: True if the barcode is valid, False otherwise.
         """
-        return re.match(r"^[A-Z0-9]{8}$", barcode) is not None
+        pattern = re.compile("^[A-Z0-9]{8}$")
+        return pattern.match(barcode)
