@@ -14,7 +14,8 @@ class ShoppingListTest(unittest.TestCase):
             {"barcode": "1234ABCD", "name": "Banana", "price": 1.50, "quantity": 2},
             {"barcode": "5678EFGH", "name": "Apple", "price": 2.50, "quantity": 1},
             {"barcode": "9012IJKL", "name": "Orange", "price": 0.50, "quantity": 3},
-            {"barcode": "3456MNOP", "name": "Pineapple", "price": 3.50, "quantity": 1}]
+            {"barcode": "3456MNOP", "name": "Pineapple", "price": 3.50, "quantity": 1},
+            {"barcode": "7890QRST", "name": "Strawberry", "price": 4.50, "quantity": 2}]
         shopping_list.add_multiple_items(list_of_items)
         self.assertEqual(shopping_list.items, list_of_items)
 

@@ -49,9 +49,8 @@ class ShoppingList:
 
     def is_valid_barcode(self, barcode):
         """
-        Check if a barcode is valid with a regular expression.
+        Check if a barcode is valid with a regular expression
         :param str barcode: The barcode to check.
         :return: True if the barcode is valid, False otherwise.
         """
-        pattern = re.compile("^[A-Z0-9]{8}$")
-        return pattern.match(barcode)
+        return re.match(r"^[A-Z0-9]{8}$", barcode)
