@@ -1,0 +1,6 @@
+aws-cdk-lib==2.46.0
+boto3==1.24.95
+botocore==1.27.95
+constructs==10.1.132
+moto==4.0.8
+pytest==7.1.3

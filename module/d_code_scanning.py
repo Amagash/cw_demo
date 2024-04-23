@@ -5,4 +5,7 @@ from flask import app
 def redirect_url_noncompliant():
     from flask import request, redirect
     endpoint = request.args['url']
-    return redirect(endpoint)
+    if validators.url(endpoint):  # import validators
+        return redirect(endpoint)
+    else:
+        raise RuntimeError("URL being redirected to is invalid.")
