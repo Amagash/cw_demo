@@ -116,10 +116,4 @@ class Wallet:
         :rtype: Transaction
         """
         return self.add_transaction(amount, currency, TransactionType.TOP_UP)
-
-    # function to get total number of transactions of the wallet
-    def get_total_transactions(self):
-        """
-        
-        """
-        return len(self.transactions)
+    
